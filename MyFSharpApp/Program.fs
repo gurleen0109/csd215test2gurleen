@@ -10,7 +10,7 @@ type Genre =
         | Sport
 
 // Define the "Director" record type
-type Directrr = {
+type Director = {
   Name: string
   Movies: int
 }
@@ -20,17 +20,25 @@ type Movie = {
   Name: string
   RunLength: int
   Genre: Genre
-  Directrr: Directrr
+  Director: string
   IMDBRating: float
 }
 
 // Create movie instances
 
-let movie1 = { Name = "CODA"; RunLength = 111; Genre = Drama; Directrr = Sian Heder; IMDBRating = 8.1 }
-let movie2 = { Name = "Belfast"; RunLength = 98; Genre = Comedy; Directrr = Kenneth Branagh; IMDBRating = 7.3 }
-let movie3 = { Name = "Don't Look Up"; RunLength = 138; Genre = Comedy; Directrr = Adam Mckay; IMDBRating = 7.2 }
-let movie4 = { Name = "Dune"; RunLength = 155; Genre = Fantasy; Directrr = Denis Villeneuve; IMDBRating = 8.1 }
-let movie4 = { Name = "Drive My Car"; RunLength = 179; Genre = Drama; Directrr = Ryusuke Hamaguchi; IMDBRating = 7.6 }
-let movie4 = { Name = "King Richard"; RunLength = 144; Genre = Sport; Directrr = Reinaldo Marcus Green; IMDBRating = 7.5 }
-let movie4 = { Name = "Licorice Pizza"; RunLength = 133; Genre = Comedy; Directrr = Paul Thomas Anderson; IMDBRating = 7.4 }
-let movie4 = { Name = "Nightmare Alley"; RunLength = 150; Genre = Thriller; Directrr = Guillermo Del Toro ; IMDBRating = 7.1 }
+let movies = [
+    { Name = "CODA"; RunLength = 111; Genre = Drama; Director = "Sian Heder"; IMDBRating = 8.1 }
+    { Name = "Belfast"; RunLength = 98; Genre = Comedy; Director = "Kenneth Branagh"; IMDBRating = 7.3 }
+    { Name = "Don't Look Up"; RunLength = 138; Genre = Comedy; Director = "Adam Mckay"; IMDBRating = 7.2 }
+    { Name = "Dune"; RunLength = 155; Genre = Fantasy; Director = "Denis Villeneuve"; IMDBRating = 8.1 }
+    { Name = "Drive My Car"; RunLength = 179; Genre = Drama; Director = "Ryusuke Hamaguchi"; IMDBRating = 7.6 }
+    { Name = "King Richard"; RunLength = 144; Genre = Sport; Director = "Reinaldo Marcus Green"; IMDBRating = 7.5 }
+    { Name = "Licorice Pizza"; RunLength = 133; Genre = Comedy; Director = "Paul Thomas Anderson"; IMDBRating = 7.4 }
+    { Name = "Nightmare Alley"; RunLength = 150; Genre = Thriller; Director = "Guillermo Del Toro" ; IMDBRating = 7.1 }
+]
+
+
+
+// Identify probable Oscr winnrs
+let oscrWinnrs = movies |> List.filter (fun movie -> movie.IMDBRating > 7.4)
+printfn "oscrWinnrs: %A" oscrWinnrs
