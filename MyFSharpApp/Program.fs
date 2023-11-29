@@ -12,11 +12,11 @@ type Genre =
 // Define the "Director" record type
 type Director = {
   Name: string
-  Movies: int
+  movies: int
 }
 
 // Define the "Movie" record type
-type Movie = {
+type movie = {
   Name: string
   RunLength: int
   Genre: Genre
@@ -26,7 +26,7 @@ type Movie = {
 
 // Create movie instances
 
-let movies = [
+let movie = [
     { Name = "CODA"; RunLength = 111; Genre = Drama; Director = "Sian Heder"; IMDBRating = 8.1 }
     { Name = "Belfast"; RunLength = 98; Genre = Comedy; Director = "Kenneth Branagh"; IMDBRating = 7.3 }
     { Name = "Don't Look Up"; RunLength = 138; Genre = Comedy; Director = "Adam Mckay"; IMDBRating = 7.2 }
@@ -40,5 +40,17 @@ let movies = [
 
 
 // Identify probable Oscr winnrs
-let oscrWinnrs = movies |> List.filter (fun movie -> movie.IMDBRating > 7.4)
+let oscrWinnrs = movie |> List.filter (fun movie -> movie.IMDBRating > 7.4)
 printfn "oscrWinnrs: %A" oscrWinnrs
+
+// Convert movie run length to hours and minutes format
+let convertRunLength (minutes: int) =
+    let hours = minutes / 60
+    let remainingMinutes = minutes % 60
+    sprintf "%dh %02dmin" hours remainingMinutes
+
+// Map function to convert run lengths to hours and minutes format
+let runLengthsInHours = movie |> List.map (fun movie -> convertRunLength movie.RunLength)
+
+// Print results
+printfn "movie Run Lengths in Hours: %A" runLengthsInHours
